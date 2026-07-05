@@ -103,7 +103,7 @@ export function Contact() {
                 value={form.phone}
                 onChange={handleChange}
                 disabled={status === "loading"}
-                placeholder="+998 90 123 45 67"
+                placeholder="+998 90 189 0288"
                 className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm outline-none transition-colors focus:border-accent disabled:opacity-50"
               />
             </div>
