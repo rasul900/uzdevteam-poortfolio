@@ -91,7 +91,7 @@ export function Navbar() {
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  className="absolute right-0 mt-2 overflow-hidden rounded-lg border border-border bg-white shadow-lg dark:border-border-dark dark:bg-navy-light"
+                  className="absolute right-0 mt-2 overflow-hidden rounded-lg border border-border bg-black shadow-lg dark:border-border-dark dark:bg-navy-light"
                 >
                   {["uz", "ru", "en"].map((l) => (
                     <button
