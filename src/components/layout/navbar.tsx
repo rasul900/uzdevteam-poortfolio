@@ -14,11 +14,15 @@ export function Navbar() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [dark, setDark] = useState(true);
+  // Boshida noto'g'ri "flash" bo'lmasligi uchun null qilib boshlaymiz,
+  // haqiqiy qiymatni faqat mount bo'lgandan keyin o'qiymiz.
+  const [dark, setDark] = useState<boolean | null>(null);
 
+  // Scroll holatini kuzatish
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", h, { passive: true });
@@ -26,10 +30,23 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", h);
   }, []);
 
+  // Sahifa ochilganda haqiqiy holatni <html> dan o'qib, state bilan sinxronlaymiz.
+  // Bu yerda localStorage'dan foydalanib, foydalanuvchi tanlovini eslab qolamiz.
+  useEffect(() => {
+    const stored = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const shouldBeDark = stored ? stored === "dark" : prefersDark;
+
+    document.documentElement.classList.toggle("dark", shouldBeDark);
+    setDark(shouldBeDark);
+  }, []);
+
   const toggleDark = () => {
-    setDark((d) => {
-      document.documentElement.classList.toggle("dark", !d);
-      return !d;
+    setDark((prev) => {
+      const next = !prev;
+      document.documentElement.classList.toggle("dark", next);
+      localStorage.setItem("theme", next ? "dark" : "light");
+      return next;
     });
   };
 
@@ -45,17 +62,23 @@ export function Navbar() {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
+  // Toggle tugmasi ikonkasi mount bo'lgunga qadar hech narsa ko'rsatmaydi (hydration mismatch oldini olish uchun)
+  const showThemeIcon = dark !== null;
+
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled
-          ? "border-b border-white/10 bg-navy/80 backdrop-blur-xl shadow-lg shadow-black/20"
+          ? "border-b border-slate-200 bg-white/80 backdrop-blur-xl shadow-lg shadow-black/5 dark:border-white/10 dark:bg-navy/80 dark:shadow-black/20"
           : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-        <button onClick={() => scrollTo("hero")} className="flex items-center gap-2 text-xl font-bold">
+        <button
+          onClick={() => scrollTo("hero")}
+          className="flex items-center gap-2 text-xl font-bold text-slate-900 dark:text-white"
+        >
           <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-accent to-purple text-sm font-bold text-white">
             UZ
           </span>
@@ -69,7 +92,7 @@ export function Navbar() {
             <button
               key={id}
               onClick={() => scrollTo(id)}
-              className="rounded-lg px-3 py-2 text-sm font-medium text-muted transition-colors hover:text-accent dark:text-muted dark:hover:text-accent-light"
+              className="rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-900/5 hover:text-accent dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-accent-light"
             >
               {t(id)}
             </button>
@@ -77,10 +100,11 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
+          {/* Til almashtirish */}
           <div className="relative">
             <button
               onClick={() => setLangOpen(!langOpen)}
-              className="flex h-9 items-center gap-1.5 rounded-lg border border-border dark:border-border-dark px-3 text-sm transition-colors hover:border-accent"
+              className="flex h-9 items-center gap-1.5 rounded-lg border border-slate-200 px-3 text-sm text-slate-700 transition-colors hover:border-accent dark:border-white/10 dark:text-slate-200 dark:hover:border-accent"
             >
               <Globe className="h-4 w-4" />
               {locale.toUpperCase()}
@@ -91,15 +115,15 @@ export function Navbar() {
                   initial={{ opacity: 0, y: -4 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -4 }}
-                  className="absolute right-0 mt-2 overflow-hidden rounded-lg border border-border bg-black shadow-lg dark:border-border-dark dark:bg-navy-light"
+                  className="absolute right-0 mt-2 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-lg dark:border-white/10 dark:bg-navy-light"
                 >
                   {["uz", "ru", "en"].map((l) => (
                     <button
                       key={l}
                       onClick={() => switchLocale(l)}
                       className={cn(
-                        "block w-full px-4 py-2 text-left text-sm hover:bg-accent/10",
-                        locale === l && "font-semibold text-accent"
+                        "block w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-accent/10 dark:text-slate-200",
+                        locale === l && "font-semibold text-accent dark:text-accent-light"
                       )}
                     >
                       {l === "uz" ? "O'zbek" : l === "ru" ? "Русский" : "English"}
@@ -110,12 +134,13 @@ export function Navbar() {
             </AnimatePresence>
           </div>
 
+          {/* Dark / Light almashtirish tugmasi */}
           <button
             onClick={toggleDark}
-            className="flex h-9 w-9 items-center justify-center rounded-lg border border-border dark:border-border-dark transition-colors hover:border-accent"
             aria-label="Toggle theme"
+            className="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-700 transition-colors hover:border-accent hover:text-accent dark:border-white/10 dark:text-slate-200 dark:hover:border-accent dark:hover:text-accent-light"
           >
-            {dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {showThemeIcon && (dark ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />)}
           </button>
 
           <button
@@ -125,26 +150,30 @@ export function Navbar() {
             {t("cta")}
           </button>
 
-          <button onClick={() => setOpen(!open)} className="flex h-9 w-9 items-center justify-center lg:hidden">
+          <button
+            onClick={() => setOpen(!open)}
+            className="flex h-9 w-9 items-center justify-center text-slate-900 dark:text-white lg:hidden"
+          >
             {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </nav>
 
+      {/* Mobil menyu */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="overflow-hidden border-t border-border bg-white dark:border-border-dark dark:bg-navy lg:hidden"
+            className="overflow-hidden border-t border-slate-200 bg-white dark:border-white/10 dark:bg-navy lg:hidden"
           >
             <div className="space-y-1 p-4">
               {NAV_IDS.map((id) => (
                 <button
                   key={id}
                   onClick={() => scrollTo(id)}
-                  className="block w-full rounded-lg px-4 py-3 text-left text-sm font-medium hover:bg-accent/10"
+                  className="block w-full rounded-lg px-4 py-3 text-left text-sm font-medium text-slate-700 hover:bg-accent/10 dark:text-slate-200 dark:hover:bg-white/5"
                 >
                   {t(id)}
                 </button>
