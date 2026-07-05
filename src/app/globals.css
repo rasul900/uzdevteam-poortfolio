@@ -1,0 +1,176 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-navy: #0F172A;
+  --color-navy-light: #1E293B;
+  --color-navy-lighter: #334155;
+  --color-accent: #3B82F6;
+  --color-accent-light: #60A5FA;
+  --color-purple: #8B5CF6;
+  --color-purple-light: #A78BFA;
+  --color-surface: #FFFFFF;
+  --color-surface-dark: #0F172A;
+  --color-muted: #94A3B8;
+  --color-border: #E2E8F0;
+  --color-border-dark: #334155;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body {
+    background: var(--color-navy);
+    color: #F1F5F9;
+  }
+
+  ::selection {
+    background: rgba(59, 130, 246, 0.3);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .glass-card {
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* ── Section backgrounds ── */
+.section-bg-image {
+  position: absolute;
+  inset: 0;
+}
+
+.section-bg-kenburns {
+  animation: kenBurns 25s ease-in-out infinite alternate;
+}
+
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.08); }
+}
+
+.section-bg-overlay {
+  position: absolute;
+  inset: 0;
+}
+
+.section-bg-overlay--hero {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.72) 0%, rgba(15, 23, 42, 0.88) 55%, rgba(15, 23, 42, 0.95) 100%),
+    radial-gradient(ellipse 80% 60% at 20% 40%, rgba(59, 130, 246, 0.18) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 80% 60%, rgba(139, 92, 246, 0.14) 0%, transparent 55%);
+}
+
+.section-bg-overlay--section {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.88) 0%, rgba(15, 23, 42, 0.92) 100%),
+    radial-gradient(ellipse 70% 50% at 50% 0%, rgba(59, 130, 246, 0.1) 0%, transparent 60%);
+}
+
+.section-bg-overlay--subtle {
+  background:
+    linear-gradient(180deg, rgba(15, 23, 42, 0.82) 0%, rgba(15, 23, 42, 0.9) 100%),
+    radial-gradient(ellipse 50% 40% at 70% 80%, rgba(139, 92, 246, 0.08) 0%, transparent 55%);
+}
+
+.section-bg-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(59, 130, 246, 0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 130, 246, 0.5) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 20%, transparent 80%);
+}
+
+.section-bg-noise {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 128px 128px;
+}
+
+.section-scanlines {
+  position: absolute;
+  inset: 0;
+  opacity: 0.03;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.4) 2px,
+    rgba(0, 0, 0, 0.4) 4px
+  );
+  pointer-events: none;
+}
+
+.section-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  pointer-events: none;
+}
+
+.section-orb--1 {
+  top: -10%;
+  right: -5%;
+  width: 420px;
+  height: 420px;
+  background: rgba(59, 130, 246, 0.25);
+  animation: orbFloat1 12s ease-in-out infinite;
+}
+
+.section-orb--2 {
+  bottom: -15%;
+  left: -8%;
+  width: 380px;
+  height: 380px;
+  background: rgba(139, 92, 246, 0.2);
+  animation: orbFloat2 15s ease-in-out infinite;
+}
+
+.section-orb--3 {
+  top: 40%;
+  left: 50%;
+  width: 280px;
+  height: 280px;
+  background: rgba(59, 130, 246, 0.12);
+  animation: orbFloat3 10s ease-in-out infinite;
+}
+
+.section-orb--subtle {
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: rgba(59, 130, 246, 0.1);
+  animation: orbFloat1 14s ease-in-out infinite;
+}
+
+@keyframes orbFloat1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 25px) scale(1.05); }
+}
+
+@keyframes orbFloat2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(25px, -20px) scale(1.08); }
+}
+
+@keyframes orbFloat3 {
+  0%, 100% { transform: translate(-50%, 0) scale(1); opacity: 0.6; }
+  50% { transform: translate(-50%, -15px) scale(1.1); opacity: 1; }
+}

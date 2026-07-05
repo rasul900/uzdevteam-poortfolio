@@ -1,0 +1,166 @@
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "portfolio": "Portfolio",
+    "team": "Team",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "cta": "Start a Project"
+  },
+  "hero": {
+    "badge": "#1 IT Team in Tashkent",
+    "title1": "Building digital",
+    "title2": "future together",
+    "desc": "Professional development of websites, mobile apps, Telegram bots and enterprise systems. 5+ years of experience, 200+ successful projects.",
+    "cta1": "Free Consultation",
+    "cta2": "Our Projects",
+    "stats": {
+      "projects": "Projects",
+      "clients": "Clients",
+      "years": "Years exp.",
+      "team": "Specialists"
+    }
+  },
+  "services": {
+    "badge": "Services",
+    "title": "What we do",
+    "desc": "We deliver projects of any complexity using cutting-edge technologies.",
+    "items": [
+      { "title": "Web Development", "desc": "High-performance websites and web apps built with Next.js, React and Node.js." },
+      { "title": "Mobile Apps", "desc": "Native-quality iOS and Android apps with React Native and Flutter." },
+      { "title": "Telegram Bots", "desc": "Business automation, payment integration and CRM systems via Telegram." },
+      { "title": "UI/UX Design", "desc": "Modern and intuitive interfaces that enhance user experience." },
+      { "title": "DevOps & Cloud", "desc": "AWS, Docker, CI/CD — stable infrastructure and automated deployments." },
+      { "title": "SEO & Marketing", "desc": "Top search rankings and digital marketing strategies." }
+    ]
+  },
+  "whyUs": {
+    "badge": "Why us?",
+    "title": "Reasons to choose us",
+    "items": [
+      { "title": "Experienced Team", "desc": "Senior developers with 5+ years of hands-on experience." },
+      { "title": "Quality Guarantee", "desc": "Every project goes through rigorous testing and code review." },
+      { "title": "Transparent Process", "desc": "Agile methodology — weekly reports and demos." },
+      { "title": "Ongoing Support", "desc": "Technical assistance even after project delivery." }
+    ],
+    "stats": [
+      { "value": "200+", "label": "Completed projects" },
+      { "value": "50+", "label": "Loyal clients" },
+      { "value": "99%", "label": "Client satisfaction" },
+      { "value": "24/7", "label": "Support" }
+    ]
+  },
+  "portfolio": {
+    "badge": "Portfolio",
+    "title": "Selected works",
+    "desc": "Examples of our best projects.",
+    "filters": { "all": "All", "web": "Web", "mobile": "Mobile", "bot": "Bots", "design": "Design" },
+    "viewProject": "View details"
+  },
+  "process": {
+    "badge": "Process",
+    "title": "How we work",
+    "steps": [
+      { "title": "Analysis", "desc": "We study requirements and define business goals." },
+      { "title": "Design", "desc": "We create UI/UX prototypes and visual designs." },
+      { "title": "Development", "desc": "We code in Agile sprints with weekly demos." },
+      { "title": "Testing", "desc": "Full QA testing by our dedicated team." },
+      { "title": "Deployment", "desc": "We deploy to production and launch the project." },
+      { "title": "Support", "desc": "Ongoing monitoring, updates and technical help." }
+    ]
+  },
+  "team": {
+    "badge": "Team",
+    "title": "Our professional team",
+    "desc": "Each member is an expert in their field.",
+    "members": [
+      { "name": "Aziz Karimov", "role": "CEO & Full Stack Developer", "bio": "10+ years, 100+ projects" },
+      { "name": "Dilnoza Rahimova", "role": "UI/UX Designer", "bio": "Figma, Adobe, branding expert" },
+      { "name": "Sardor Toshmatov", "role": "Backend Developer", "bio": "Node.js, Python, DevOps" },
+      { "name": "Madina Yusupova", "role": "Project Manager", "bio": "Certified Agile/Scrum" }
+    ]
+  },
+  "testimonials": {
+    "badge": "Testimonials",
+    "title": "What our clients say",
+    "items": [
+      { "text": "Working with UZ DEV TEAM was seamless. The project was delivered on time with excellent quality.", "author": "Bobur Aliyev", "role": "CEO, TechMart", "rating": 5 },
+      { "text": "The Telegram bot tripled our sales. Very professional approach.", "author": "Nilufar Karimova", "role": "Founder, GreenShop", "rating": 5 },
+      { "text": "The speed and design of our website impressed our clients. Thank you!", "author": "Jamshid Umarov", "role": "Director, BuildPro", "rating": 5 }
+    ]
+  },
+  "pricing": {
+    "badge": "Pricing",
+    "title": "Transparent pricing",
+    "desc": "Choose based on your project scope and complexity.",
+    "monthly": "Monthly",
+    "yearly": "Yearly",
+    "popular": "Popular",
+    "cta": "Choose plan",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$500",
+        "desc": "For small projects",
+        "features": ["Landing page", "Responsive design", "Basic SEO", "1 month support", "Hosting setup"]
+      },
+      {
+        "name": "Business",
+        "price": "$2,000",
+        "desc": "For medium business",
+        "features": ["Full-stack web app", "Admin panel", "API integration", "3 months support", "CI/CD pipeline", "Analytics"]
+      },
+      {
+        "name": "Enterprise",
+        "price": "$5,000+",
+        "desc": "For large projects",
+        "features": ["Complex systems", "Microservices", "24/7 monitoring", "6 months support", "Dedicated team", "SLA guarantee"]
+      }
+    ]
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently asked questions",
+    "items": [
+      { "q": "How long does a project take?", "a": "Depends on complexity: landing page — 1-2 weeks, web app — 1-3 months, complex system — 3-6 months." },
+      { "q": "How does payment work?", "a": "50/50 scheme — 50% upfront, 50% on delivery. Milestone-based payments for larger projects." },
+      { "q": "Is there post-delivery support?", "a": "Yes, all plans include a free support period. We also offer extended support services." },
+      { "q": "What technologies do you use?", "a": "Next.js, React, Node.js, Python, React Native, Flutter, PostgreSQL, MongoDB, AWS, Docker." },
+      { "q": "Do you work with remote clients?", "a": "Absolutely! We have extensive remote experience via Zoom/Telegram." }
+    ]
+  },
+  "contact": {
+    "badge": "Contact",
+    "title": "Let's discuss your project",
+    "desc": "Reach out for a free consultation or fill out the form.",
+    "form": {
+      "name": "Your name",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "submit": "Send",
+      "sending": "Sending...",
+      "success": "Message sent! We'll get back to you soon.",
+      "error": "Something went wrong. Please try again."
+    },
+    "info": {
+      "address": "Tashkent, Amir Temur st. 12",
+      "email": "abdurasulxhayrulayev@gmail.com",
+      "phone": "+998 90 123 45 67"
+    }
+  },
+  "footer": {
+    "desc": "Professional IT services and digital solutions.",
+    "links": "Quick Links",
+    "services": "Services",
+    "contact": "Contact",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "theme": {
+    "light": "Light",
+    "dark": "Dark"
+  }
+}
